@@ -16,7 +16,7 @@ from ldm.util import instantiate_from_config
 
 from modules import paths, shared, modelloader, devices, script_callbacks, sd_vae, sd_disable_initialization, errors, hashes, sd_models_config, sd_unet, sd_models_xl, cache, extra_networks, processing, lowvram, sd_hijack
 from modules.timer import Timer
-import tomesd
+# import tomesd
 
 model_dir = "Stable-diffusion"
 model_path = os.path.abspath(os.path.join(paths.models_path, model_dir))
@@ -802,17 +802,17 @@ def apply_token_merging(sd_model, token_merging_ratio):
     if current_token_merging_ratio == token_merging_ratio:
         return
 
-    if current_token_merging_ratio > 0:
-        tomesd.remove_patch(sd_model)
+    #if current_token_merging_ratio > 0:
+#        tomesd.remove_patch(sd_model)
 
-    if token_merging_ratio > 0:
-        tomesd.apply_patch(
-            sd_model,
-            ratio=token_merging_ratio,
-            use_rand=False,  # can cause issues with some samplers
-            merge_attn=True,
-            merge_crossattn=False,
-            merge_mlp=False
-        )
+    # if token_merging_ratio > 0:
+    #     tomesd.apply_patch(
+    #         sd_model,
+    #         ratio=token_merging_ratio,
+    #         use_rand=False,  # can cause issues with some samplers
+    #         merge_attn=True,
+    #         merge_crossattn=False,
+    #         merge_mlp=False
+    #     )
 
     sd_model.applied_token_merged_ratio = token_merging_ratio
